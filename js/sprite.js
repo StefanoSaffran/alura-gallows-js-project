@@ -27,7 +27,7 @@ var createSprite = function (selector) {
 
     var reset = () => {
 
-        moveFrame(frames[current], frames[0])
+        moveFrame(frames[currentFrame], frames[0])
         currentFrame = 0;
     };
 
