@@ -19,7 +19,7 @@ var createSprite = function (selector) {
         $element.removeClass(from)
             .addClass(to);
     };
-
+    
     var nextFrame = function () {
 
         if (hasNext()) moveFrame(frames[currentFrame], frames[++currentFrame]);

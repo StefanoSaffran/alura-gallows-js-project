@@ -6,6 +6,8 @@ var createGame = function (sprite) {
 
     var setSecretWord = word => {
 
+        if(!word.trim()) throw Error('Invalid Word');
+
         secretWord = word;
         setGaps();
         nextStep();
@@ -35,6 +37,8 @@ var createGame = function (sprite) {
 
     var processHint = character => {
 
+        if(!character.trim()) throw Error('Invalid Hint');
+
         let regEx = new RegExp(character, 'gi')
             ,result
             ,correctHint = false;
@@ -48,35 +52,36 @@ var createGame = function (sprite) {
         
     };
 
-    var won = function () {                     // ternary if -> if the arrayGaps.length = 0 return false, if not resolve 'some'.
-                                                
+    var win = function () {                     
+                                                // ternary if -> if the arrayGaps.length = 0 return false, if not resolve 'some'.
        /*  return arrayGaps.length
         ? !arrayGaps.some(gap => {             // 'some' scans the array item by item and returns true if it finds the searched value,
             return gap == '';                  // in this case empty '', if it does not find, return false. As we want it to be the inverse, 
         })                                     // we put '!' at the beginning of the return, so if the person already filled the entire array, '' will not be found
         : false;   */                             //'some' will return false then the value is inverted by '!' returning true.
                                         
-    return arrayGaps.indexOf("")==-1 && arrayGaps.length > 0
-
-
+        
+        
         /* let verifyVictory = true;
         if(step === 1) verifyVictory = false;
-
+        
         for (i=0; i<arrayGaps.length; i++) {                    //another way to do
-
+            
             if (arrayGaps[i] === '') verifyVictory = false;
         }
-
-       return verifyVictory; */
+        
+        return verifyVictory; */
+        
+        return arrayGaps.indexOf("")==-1 && arrayGaps.length > 0
 
     };
 
-    var lost = function () {
+    var lose = function () {
         return sprite.isFinished();
     };
 
-    var wonOrLost = function () {
-        return lost() || won();
+    var winOrLose = function () {
+        return lose() || win();
     };
 
     var restart = function () {
@@ -92,9 +97,9 @@ var createGame = function (sprite) {
         getGaps: getGaps,
         getStep: getStep,
         processHint: processHint,
-        won: won,
-        lost: lost,
-        wonOrLost: wonOrLost, 
+        win: win,
+        lose: lose,
+        winOrLose: winOrLose, 
         restart: restart
     };
 };
