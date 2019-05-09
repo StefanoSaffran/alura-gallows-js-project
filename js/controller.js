@@ -1,50 +1,34 @@
 $(() => {
-
     createController(
-        createGame(
+        createGame(                         // it will run when the page loads.
             createSprite('.sprite')
         )
     ).start();
 })
 
-var createController = function (game) {
+const createController = game => {
 
-    var $entry = $('.entry');
-    var $gap = $('.gaps');
+    const $entry = $('.entry');
+    const $gap = $('.gaps');
 
     // Search the gaps game.getGaps() and display them to the player
-    var showGaps = function () {
+    const showGaps = () => {
 
         $gap.empty();
-
-        let arrayGaps = game.getGaps();
-
-        for (i = 0; i < arrayGaps.length; i++) {
-            let liGap = $("<li>");
-            liGap
-                .text(arrayGaps[i])
-                .addClass("gap")
+        jogo.getLacunas().forEach(gap => {
+            $('<li>')                                       
+                .addClass('gap')
+                .text(gap)
                 .appendTo($gap);
-        }
+        });
 
-        /* jogo.getLacunas().forEach(function (lacuna) {
-            $('<li>')                                       // another solution using forEach
-                .addClass('lacuna')
-                .text(lacuna)
-                .appendTo($lacunas);
-        }); */
     };
 
     // change the placeHolder and clean the input field    
-    var changePlaceHolder = function (text) {
-
-        $entry
-            .val('')
-            .attr("placeholder", text);
-    };
+    const changePlaceHolder = text => $entry.val('').attr("placeholder", text);
 
     // passes to game.setSecretWord() the value entered by the player and calls the `showGaps()` and `changePlaceHolder()` functions. 
-    var guardaPalavraSecreta = function () {
+    const saveSecretWord = () => {
 
         try {
 
@@ -58,7 +42,7 @@ var createController = function (game) {
     };
 
     // restart the game if the player win or lose the game!
-    var restart = function () {
+    const restart = () => {
 
         $gap.empty();
         changePlaceHolder("Secret Word");
@@ -66,7 +50,7 @@ var createController = function (game) {
     }
 
     //read the player hint process it and show in the view. Then check to see if the player has won or lost.
-    var readHint = function () {
+    const readHint = () => {
         try {
             game.processHint($entry.val().trim().substr(0, 1));
             showGaps();
@@ -74,25 +58,25 @@ var createController = function (game) {
 
             if (game.winOrLose()) {
 
-                setTimeout(function () {
+                setTimeout(() => {
                     if (game.win()) alert("You WIN!!\n Congratulations!");
                     else alert("You LOSE!!\n Try again!");
                     restart();
-                }, 500);
+                }, 100);
             }
         } catch (err) {
             alert(err.message);
         }
     }
 
-    // do the keypress event association to capture the player input every time he press ENTER.
-    var start = function () {
+    // Make the keypress event association to capture the player input every time he press ENTER.
+    const start = () => {
 
-        $entry.keypress(function (event) {
+        $entry.keypress(event => {
             if (event.which == 13) {
                 switch (game.getStep()) {
                     case 1:
-                        guardaPalavraSecreta();
+                        saveSecretWord();
                         break;
                     case 2:
                         readHint();
@@ -103,6 +87,6 @@ var createController = function (game) {
     };
 
     // returns an object with the start property, which must be called as soon as the controller is created
-    return { start: start };
+    return { start };
 
 };

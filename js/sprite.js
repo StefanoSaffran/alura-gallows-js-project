@@ -1,57 +1,41 @@
-/* $(() => {
-    var sprite = createSprite('.sprite');
+const createSprite = selector => {
 
-    setInterval(function () {
-        sprite.nextFrame();
-    }, 500);
-}) */
+    const isFinished = () => !hasNext();
 
-var createSprite = function (selector) {
+    const hasNext = () => current + 1 <= last;
 
-    var hasNext = function () {
-
-        var next = currentFrame + 1;
-        return next <= last;
-    };
-
-    var moveFrame = function (from, to) {
+    const moveFrame = (from, to) => {
 
         $element.removeClass(from)
             .addClass(to);
     };
     
-    var nextFrame = function () {
+    const nextFrame = () => {
 
-        if (hasNext()) moveFrame(frames[currentFrame], frames[++currentFrame]);
+        if (hasNext()) moveFrame(frames[current], frames[++current]);
     };
 
-    var reset = () => {
+    const reset = () => {
 
-        moveFrame(frames[currentFrame], frames[0])
-        currentFrame = 0;
+        moveFrame(frames[current], frames[0])
+        current = 0;
     };
 
-    var isFinished = () => {
+    let current = 0;
+    const $element = $(selector);
 
-        return !hasNext();
-    }
-
-    var currentFrame = 0;
-    var $element = $(selector);
-
-    var frames = [
+    const frames = [
         'frame1', 'frame2', 'frame3', 'frame4', 'frame5',
         'frame6', 'frame7', 'frame8', 'frame9'
     ];
 
-    $element.addClass(frames[currentFrame]);
-    var last = frames.length - 1;
-
+    $element.addClass(frames[current]);
+    const last = frames.length - 1;
 
     return {
-        nextFrame: nextFrame,
-        reset: reset,
-        isFinished: isFinished
+        nextFrame,
+        reset,
+        isFinished
     };
 
 };
