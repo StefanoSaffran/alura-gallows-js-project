@@ -11,17 +11,16 @@ const createController = game => {
     const $entry = $('.entry');
     const $gap = $('.gaps');
 
-    // Search the gaps game.getGaps() and display them to the player
+    // Get the gaps game.getGaps() and display them to the player
     const showGaps = () => {
 
         $gap.empty();
-        jogo.getLacunas().forEach(gap => {
+        game.getGaps().forEach(gap => {
             $('<li>')                                       
                 .addClass('gap')
                 .text(gap)
                 .appendTo($gap);
         });
-
     };
 
     // change the placeHolder and clean the input field    
@@ -31,11 +30,10 @@ const createController = game => {
     const saveSecretWord = () => {
 
         try {
-
             game.setSecretWord($entry.val().trim());   //trim() to avoid the white spaces.
             changePlaceHolder("Hint");
             showGaps();
-
+            
         } catch (err) {
             alert(err.message);
         }
