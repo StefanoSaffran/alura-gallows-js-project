@@ -1,7 +1,7 @@
 # Gallows Game
 
 <p align="center" >
-This project was developed for the conclusion project for Alura JavaScript Developer training.
+This project was developed as a conclusion project for Alura JavaScript Developer training.
 </p>
 
 [Alura website](https://www.alura.com.br/).
