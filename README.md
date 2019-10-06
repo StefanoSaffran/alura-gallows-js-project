@@ -4,7 +4,7 @@
 This project was developed as a conclusion project for Alura JavaScript Developer training.
 </p>
 
-[Alura website](https://www.alura.com.br/).
+[My profile on Alura](https://cursos.alura.com.br/user/stefanosaffran).
 
 ## Built With
 
