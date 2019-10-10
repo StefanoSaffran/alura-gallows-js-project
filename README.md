@@ -1,12 +1,9 @@
 # Gallows Game
 
-<p align="center" >
-This project was developed as a conclusion project for Alura JavaScript Developer training.
-</p>
+### This project was developed as a conclusion project for Alura JavaScript Developer training. :books:
 
-[My profile on Alura](https://cursos.alura.com.br/user/stefanosaffran).
 
-## Built With
+## :electric_plug: Built With
 
 - JavaScript
 - JQuery
@@ -14,9 +11,14 @@ This project was developed as a conclusion project for Alura JavaScript Develope
 - CSS3
 - Bootstrap
 
+<hr />
 
 <p align="center">
   <img src="src/assets/sprite.jpeg" />
   <img src="src/assets/gallows-01.png" />
   <img src="src/assets/gallows-02.png" />
 </p>
+
+<hr />
+
+### <a href="https://cursos.alura.com.br/user/stefanosaffran">My profile on Alura</a> | <a href="https://www.linkedin.com/in/stefanosaffran/">LinkedIn</a> | <a href="https://stefanosaffran.com">Website</a>
